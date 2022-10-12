@@ -62,6 +62,10 @@ developing a Django Web application:
    ```shell
    pip install -r requirements.txt
    ```
+9. Run migrate
+   ```shell
+   python manage.py migrate
+   ```
 8. Run the Django Web application using local development server:
 
    ```shell
