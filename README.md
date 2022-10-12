@@ -2,19 +2,47 @@
 
 ## Daftar Anggota
 Kelompok B01:
--Elang Permana
--Nadhira Shahnaz Zain
--Naufal Weise Widyatama
--Rafa Maritza
--Taqiya Zayin Hanafie
+- Elang Permana
+- Nadhira Shahnaz Zain
+- Naufal Weise Widyatama
+- Rafa Maritza
+- Taqiya Zayin Hanafie
 
 ## Tautan Aplikasi Heroku
 https://pbp-b01-proyek-tengah-semester.herokuapp.com/
 
 ## Deskripsi Aplikasi
+Salah satu prioritas G20 adalah Global Health. Saat ini, banyak negara yang mengalami krisis kesehatan, lebih spesifiknya berkaitan dengan Anti-Microbial Resistance. OECD menargetkan untuk menyelesaikan isu ini dengan mempermudah akses antibiotik dan obat-obatan lainnya. Oleh karena itu, kami mengajukan aplikasi online pharmacy yang bertujuan untuk mempermudah akses obat-obatan ke masyarakat.
+
+Aplikasi online pharmacy adalah aplikasi berbasis web yang menyediakan layanan pembelian obat secara online. Aplikasi ini menghubungkan pembeli dengan apotek dalam jual beli obat-obatan.
 
 ## Daftar Modul
 Daftar modul yang akan diimplementasi:
+- Customer
+Registrasi & login customer. Ganti password. Laman setting (nama, alamat, dll.)
+- Admin aplikasi
+Registrasi apotek & admin apotek. Laman atur akses admin apotek.
+- Market
+Laman utk list obat yg dpt dibeli (utk customer). Ada fitur search obat.
+- Admin Apotek
+CRUD Obat. Setting info apotek (nama apotek, alamat, dll.)
+- Order
+Laman membuat order baru (utk customer). Laman melihat order (utk admin apotek).
 
-## Role
+### Role
 Role atau peran pengguna beserta deskripsinya:
+
+# Admin Aplikasi
+Dapat melakukan:
+- Registrasi Apotek
+- Membuat akun admin apotek & mengatur hak aksesnya
+### Admin Apotek
+Dapat melakukan:
+- Input Obat
+- List obat
+- Lihat daftar orderan obat
+
+### Customer
+Dapat melakukan:
+- List Obat yang dpt dibeli
+- Pesan obat
