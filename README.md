@@ -25,7 +25,7 @@ Registrasi apotek & admin apotek.
 - Market<br>
 Laman utk list obat yg dpt dibeli (utk customer). Fitur search obat.
 - Admin Apotek<br>
-CRUD Obat.
+CRUD Obat apotek miliknya.
 - Order<br>
 Laman membuat order baru (utk customer). Laman melihat order (utk admin apotek).
 
@@ -40,6 +40,7 @@ Dapat melakukan:
 Dapat melakukan:
 - Input Obat, lihat List obat
 - Lihat daftar orderan obat
+<br>
 Hanya bisa mengakses data apotek miliknya.
 
 ### Customer
