@@ -19,9 +19,9 @@ Aplikasi online pharmacy adalah aplikasi berbasis web yang menyediakan layanan p
 ## Daftar Modul
 Daftar modul yang akan diimplementasi:
 - Customer<br>
-Registrasi & login customer. Ganti password. Laman setting (nama, alamat, dll.)
+Registrasi & login customer. Laman setting (nama, alamat, dll.)
 - Admin aplikasi<br>
-Registrasi apotek & admin apotek.
+Registrasi apotek. Buat akun admin apotek.
 - Market<br>
 Laman utk list obat yg dpt dibeli (utk customer). Fitur search obat.
 - Admin Apotek<br>
