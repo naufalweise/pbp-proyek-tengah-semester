@@ -29,10 +29,10 @@ CRUD Obat. Setting info apotek (nama apotek, alamat, dll.)
 - Order
 Laman membuat order baru (utk customer). Laman melihat order (utk admin apotek).
 
-### Role
+## Role
 Role atau peran pengguna beserta deskripsinya:
 
-# Admin Aplikasi
+### Admin Aplikasi
 Dapat melakukan:
 - Registrasi Apotek
 - Membuat akun admin apotek & mengatur hak aksesnya
