@@ -18,15 +18,15 @@ Aplikasi online pharmacy adalah aplikasi berbasis web yang menyediakan layanan p
 
 ## Daftar Modul
 Daftar modul yang akan diimplementasi:
-- Customer
+- Customer<br>
 Registrasi & login customer. Ganti password. Laman setting (nama, alamat, dll.)
-- Admin aplikasi
-Registrasi apotek & admin apotek. Laman atur akses admin apotek.
-- Market
-Laman utk list obat yg dpt dibeli (utk customer). Ada fitur search obat.
-- Admin Apotek
-CRUD Obat. Setting info apotek (nama apotek, alamat, dll.)
-- Order
+- Admin aplikasi<br>
+Registrasi apotek & admin apotek.
+- Market<br>
+Laman utk list obat yg dpt dibeli (utk customer). Fitur search obat.
+- Admin Apotek<br>
+CRUD Obat.
+- Order<br>
 Laman membuat order baru (utk customer). Laman melihat order (utk admin apotek).
 
 ## Role
@@ -35,14 +35,14 @@ Role atau peran pengguna beserta deskripsinya:
 ### Admin Aplikasi
 Dapat melakukan:
 - Registrasi Apotek
-- Membuat akun admin apotek & mengatur hak aksesnya
+- Membuat akun admin apotek
 ### Admin Apotek
 Dapat melakukan:
-- Input Obat
-- List obat
+- Input Obat, lihat List obat
 - Lihat daftar orderan obat
+Hanya bisa mengakses data apotek miliknya.
 
 ### Customer
 Dapat melakukan:
-- List Obat yang dpt dibeli
+- lihat List Obat yang dpt dibeli
 - Pesan obat
