@@ -1,6 +1,11 @@
 {% extends "medicine/base.html" %}
 {% load static %}
 {% block content %}
+<ul class="nav nav-pills">
+	<li class="nav-item">
+	  <button onclick="openMedicineForm()">Create New Medicine</button>
+	</li>
+</ul>
 <table id="medicine-table" class="table">
 	<thead>
 		<tr>
@@ -12,7 +17,25 @@
 	<tbody>
 	</tbody>
 </table>
-{{form}}
+<!--Medicine Form Modal -->
+<div class="modal fade" id="medicine-form-modal" tabindex="-1" aria-labelledby="medicine form modal" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h1 class="modal-title fs-5" id="medicine-form-modal-title">Medicine Form</h1>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body" id="medicine-form-modal-body">
+		  
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+		  <button type="button" class="btn btn-primary" onclick="saveMedicineForm()">Save changes</button>
+		</div>
+	  </div>
+	</div>
+</div>
+<div id="myModal">My Modal</div>
 {% endblock content %}
 
 {% block script %}

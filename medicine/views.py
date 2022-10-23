@@ -10,9 +10,9 @@ from .models import Medicine
 def create_medicine(request):
 	form = MedicineForm(request.POST)
 	if not form.is_valid():
-		return HttpResponse(status_code=400)
+		return JsonResponse({"errors": form.errors.as_text()}, status=400)
 	form.save()
-	return HttpResponse(status_code=200)
+	return HttpResponse(status=200)
 
 def retrieve_medicines(request):
 	medicines = Medicine.objects.all()
@@ -29,11 +29,11 @@ def view_crud_page (request):
 	form = MedicineForm()
 	return render(request, "medicine/crud.html", {'form': form})
 
+def get_crud_form_empty(request):
+	form = MedicineForm()
+	return JsonResponse({'form': form.as_div()})
+
 def get_crud_form(request, id):
-	form
-	if id is None:
-		form = MedicineForm()
-	else:
-		instance = Medicine.objects.get(pk = id)
-		form = MedicineForm(instance=instance)
+	instance = Medicine.objects.get(pk = id)
+	form = MedicineForm(instance=instance)
 	return JsonResponse({'form': form})
