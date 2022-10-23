@@ -1,4 +1,20 @@
 {% extends "medicine/base.html" %}
+{% load static %}
 {% block content %}
+<table id="medicine-table" class="table">
+	<thead>
+		<tr>
+			<td>Name</td>
+			<td>Stock</td>
+			<td>Pharmacy</td>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
 {{form}}
 {% endblock content %}
+
+{% block script %}
+<script src="{% static '/medicine/js/crud.js' %}" type="text/javascript"></script> 
+{% endblock script %}

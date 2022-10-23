@@ -1,3 +1,4 @@
+from django.core import serializers
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_POST
@@ -12,10 +13,10 @@ def create_medicine(request):
 		return HttpResponse(status_code=400)
 	form.save()
 	return HttpResponse(status_code=200)
-	pass
 
-def retrieve_medicines():
-	pass
+def retrieve_medicines(request):
+	medicines = Medicine.objects.all()
+	return HttpResponse(serializers.serialize("json", medicines), content_type="application/json")
 
 def update_medicine():
 	pass
