@@ -29,6 +29,7 @@ function renderMedicines(medicines) {
 				<td>${m.fields.name}</td>
 				<td>${m.fields.stock}</td>
 				<td>Pharmacy ${m.fields.pharmacy}</td>
+				<td><button class="btn btn-secondary" onclick="deleteMedicine(${m.pk})">Delete</button></td>
 			</tr>
 		`
 		tableBody.append(row)
@@ -63,4 +64,13 @@ function saveMedicineForm() {
 		})
 		.fail(res => form.find("div.errors").html(res.responseJSON.errors))
 	console.log("SAVE")
+}
+
+function deleteMedicine(id) {
+	$.ajax({method: "POST", url: "/medicine/delete/" + id})
+		.done(() => {
+			alert("Deleted one medicine!")
+			fetchAndRenderMedicines()
+		})
+	console.log("DELETE ", id)
 }

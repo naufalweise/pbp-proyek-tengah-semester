@@ -21,8 +21,11 @@ def retrieve_medicines(request):
 def update_medicine():
 	pass
 
-def delete_medicine():
-	pass
+@require_POST
+def delete_medicine(request, id):
+	instance = Medicine.objects.get(pk = id)
+	instance.delete()
+	return HttpResponse(status=200)
 
 
 def view_crud_page (request):
