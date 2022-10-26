@@ -18,8 +18,11 @@ def retrieve_medicines(request):
 	medicines = Medicine.objects.all()
 	return HttpResponse(serializers.serialize("json", medicines), content_type="application/json")
 
-def update_medicine():
-	pass
+def update_medicine(request, id):
+	instance = Medicine.objects.get(pk = id)
+	form = MedicineForm(request.POST, instance=instance)
+	form.save()
+	return HttpResponse(status=200)
 
 @require_POST
 def delete_medicine(request, id):
@@ -39,4 +42,4 @@ def get_crud_form_empty(request):
 def get_crud_form(request, id):
 	instance = Medicine.objects.get(pk = id)
 	form = MedicineForm(instance=instance)
-	return JsonResponse({'form': form})
+	return JsonResponse({'form': form.as_div()})

@@ -1,12 +1,14 @@
-const csrftoken = Cookies.get('csrftoken');
-$.ajaxSetup({
-	headers: {'X-CSRFToken': csrftoken},
-});
+
 
 var modal
 
 $(document).ready(() => {
 	console.log("Init")
+	const csrftoken = Cookies.get('csrftoken');
+	console.log("CSRF", csrftoken)
+	$.ajaxSetup({
+		headers: {'X-CSRFToken': csrftoken},
+	});
 	modal = new bootstrap.Modal('#medicine-form-modal', {})
 	fetchAndRenderMedicines()
 })
@@ -29,7 +31,7 @@ function renderMedicines(medicines) {
 				<td>${m.fields.name}</td>
 				<td>${m.fields.stock}</td>
 				<td>Pharmacy ${m.fields.pharmacy}</td>
-				<td><button class="btn btn-secondary" onclick="deleteMedicine(${m.pk})">Delete</button></td>
+				<td><div class="d-flex gap-2"><button class="btn btn-secondary" onclick="deleteMedicine(${m.pk})">Delete</button><button class="btn btn-secondary" onclick="openEditForm(${m.pk})">Edit</button></div></td>
 			</tr>
 		`
 		tableBody.append(row)
@@ -46,6 +48,7 @@ function openMedicineForm() {
 		const form = $("<form>")
 			.attr("id", "medicine-form")
 			.attr("data-action", "create")
+			.attr("action", "/medicine/create")
 			.html(data.form)
 			.append($("<div>").attr("class", "errors") )
 		console.log(form)
@@ -54,11 +57,33 @@ function openMedicineForm() {
 	})
 }
 
+function openEditForm(id) {
+	const modalBody = $("#medicine-form-modal-body")
+	modalBody.text("Loading ...")
+	modal.show()
+	$.ajax({method: "GET", url: "/medicine/form/" + id}).done(data => {
+		console.log("FINISHED FETCHING FORM")
+		console.log(data)
+		const form = $("<form>")
+			.attr("id", "medicine-form")
+			.attr("data-action", "update")
+			.attr("action", "/medicine/update/" + id)
+			.html(data.form)
+			.append($("<div>").attr("class", "errors") )
+		console.log(form)
+		modalBody.empty()
+		modalBody.append(form)
+	})
+}
+
+// TODO: MODIFY Save medicine form to support update medicine
 function saveMedicineForm() {
 	const form = $("#medicine-form")
-	$.ajax({method: "POST", url: "/medicine/" + form.attr("data-action"), data: form.serialize()})
+	const url = form.attr("action")
+	$.ajax({method: "POST", url, data: form.serialize()})
 		.done(res => {
-			alert("A new medicine has been added!")
+			const message = form.attr("data-action") == "create" ? "Added new medicine!" : "Updated a medicine!"
+			alert(message)
 			modal.hide()
 			fetchAndRenderMedicines()
 		})
