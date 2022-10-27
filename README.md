@@ -21,7 +21,7 @@ Daftar modul yang akan diimplementasi:
 - Customer<br>
 Registrasi & login customer. Laman setting (nama dan alamat). Model yang dibuat: Customer.
 - Pharmacy<br>
-Registrasi apotek, Edit profil apotek (untuk admin aplikasi). Model yang dibuat: Pharmacy.
+Registrasi apotek & edit profil apotek (untuk admin aplikasi). Model yang dibuat: Pharmacy.
 - Market<br>
 Laman untuk list obat yang dapat dibeli (untuk customer). Fitur search obat.
 - Medicine<br>
