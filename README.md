@@ -35,11 +35,11 @@ Role atau peran pengguna beserta deskripsinya:
 ### Admin Aplikasi
 Dapat melakukan:
 - Registrasi apotek
-- Input Obat, lihat list obat
+- Input obat, lihat list obat
 - Lihat daftar orderan obat
 <br>
 
 ### Customer
 Dapat melakukan:
-- Lihat List Obat yang dapat dibeli
+- Lihat list obat yang dapat dibeli
 - Pesan obat
