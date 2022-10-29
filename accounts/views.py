@@ -52,6 +52,8 @@ def login(request):
         if user is None:
             return HttpResponse( "Username atau password salah!", status=401)
             
+        auth.login(request, user)
+        
         if user.groups.filter(name='app_admin'):
             response = redirect('medicine:view_crud')
             response.set_cookie('last_login', str(datetime.datetime.now()))
@@ -59,6 +61,8 @@ def login(request):
 
         # if user.groups.filter(name='customer'):
         #    return redirect('customer:homepage)
+        else:
+            return HttpResponse("User tidak punya role!",status=403)
 
     context = {}
     return render(request, 'accounts/login.html', context)
