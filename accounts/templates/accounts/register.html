@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'accounts/base.html' %}
 {% block meta %}
 <title>Registrasi Akun</title>
 {% endblock meta %}
@@ -53,6 +53,9 @@
           <hr class="my-4">
 
           <button class="w-100 btn btn-primary btn-lg" type="submit">Register</button>
+          <p class="mt-5 mb-3 text-muted">Already have an account? 
+            <a href="{% url 'accounts:login' %}">Login here</a>
+          </p>
         </form>
 
 
