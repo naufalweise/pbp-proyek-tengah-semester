@@ -16,6 +16,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('app_admin', '0001_initial'),
+        ('medicine', '0001_initial'),
     ]
 
     operations = [
