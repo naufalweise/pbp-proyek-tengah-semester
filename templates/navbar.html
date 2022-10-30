@@ -6,7 +6,7 @@
             href="#"
             class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"
         >
-            <span class="fs-4">Medicine</span>
+            <span class="fs-4">Online Pharma</span>
         </a>
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
@@ -15,6 +15,13 @@
                     >Home</a
                 >
             </li>
+			{% if perms.medicine.change_medicine %}
+			<li>
+                <a href="/medicine/crud" class="nav-link px-2"
+                    >Manage Medicine</a
+                >
+            </li>
+			{% endif %}
         </ul>
 
         <div class="col-md-3 text-end">
