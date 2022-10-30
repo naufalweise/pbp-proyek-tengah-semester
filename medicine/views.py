@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.contrib.auth.decorators import permission_required
 from django.core import serializers
 from django.http import HttpResponse, JsonResponse
@@ -14,6 +15,7 @@ def create_medicine(request):
 	if not form.is_valid():
 		return JsonResponse({"errors": form.errors.as_text()}, status=400)
 	form.save()
+	request.session['last_activity'] = "Create Medicine"
 	return HttpResponse(status=200)
 
 def retrieve_medicines(request):
@@ -25,6 +27,7 @@ def update_medicine(request, id):
 	instance = Medicine.objects.get(pk = id)
 	form = MedicineForm(request.POST, instance=instance)
 	form.save()
+	request.session['last_activity'] = "Update Medicine"
 	return HttpResponse(status=200)
 
 @permission_required('medicine.delete_medicine')
@@ -32,6 +35,7 @@ def update_medicine(request, id):
 def delete_medicine(request, id):
 	instance = Medicine.objects.get(pk = id)
 	instance.delete()
+	request.session['last_activity'] = "Delete Medicine"
 	return HttpResponse(status=200)
 
 @permission_required('medicine.change_medicine')
@@ -48,4 +52,5 @@ def get_crud_form_empty(request):
 def get_crud_form(request, id):
 	instance = Medicine.objects.get(pk = id)
 	form = MedicineForm(instance=instance)
+	request.session['last_activity_date'] = str(datetime.now())
 	return JsonResponse({'form': form.as_div()})

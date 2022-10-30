@@ -18,6 +18,11 @@
 	<tbody>
 	</tbody>
 </table>
+<div class="py-1">
+	{% if request.session.last_activity %}
+	last activity: {{request.session.last_activity}}
+	{% endif %}
+</div>
 <!--Medicine Form Modal -->
 <div class="modal fade" id="medicine-form-modal" tabindex="-1" aria-labelledby="medicine form modal" aria-hidden="true">
 	<div class="modal-dialog">
