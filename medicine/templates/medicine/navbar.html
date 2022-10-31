@@ -1,0 +1,41 @@
+<div class="container">
+    <header
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
+    >
+        <a
+            href="#"
+            class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"
+        >
+            <span class="fs-4">Medicine</span>
+        </a>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li>
+                <a href="/" class="nav-link px-2"
+                    >Home</a
+                >
+            </li>
+        </ul>
+
+        <div class="col-md-3 text-end">
+            {% if user.is_authenticated %}
+            <div>
+                <span>{{user.username}}</span>
+                <form method="post" action="{% url 'accounts:logout' %}" class="form-inline d-inline">
+					{% csrf_token %}
+					<button class="btn" type="submit" >
+					  <span class="material-symbols-outlined">logout</span>
+					</a>
+				</form>
+            </div>
+
+            {% else %}
+            <a
+                class="btn btn-outline-primary me-2"
+                href="{% url 'accounts:login' %}"
+                >Login</a
+            >
+            {% endif %}
+        </div>
+    </header>
+</div>

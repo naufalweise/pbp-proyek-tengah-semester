@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'example_app',
     'pharmacy',
     'medicine',
+    'app_admin',
+    'accounts',
 ]
 
 MIDDLEWARE = [

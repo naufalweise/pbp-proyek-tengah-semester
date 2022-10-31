@@ -1,5 +1,10 @@
 {% extends "medicine/base.html" %}
 {% load static %}
+
+{% block meta %}
+<title>Manage Medicine</title>
+{% endblock meta %}
+
 {% block content %}
 
 <ul class="nav nav-pills">
@@ -20,8 +25,11 @@
 	<tbody>
 	</tbody>
 </table>
-
-
+<div class="py-1">
+	{% if request.session.last_activity %}
+	last activity: {{request.session.last_activity}}
+	{% endif %}
+</div>
 <!--Medicine Form Modal -->
 <div class="modal fade" id="medicine-form-modal" tabindex="-1" aria-labelledby="medicine form modal" aria-hidden="true">
 	<div class="modal-dialog">
@@ -40,7 +48,6 @@
 	  </div>
 	</div>
 </div>
-<div id="myModal">My Modal</div>
 {% endblock content %}
 
 {% block script %}
