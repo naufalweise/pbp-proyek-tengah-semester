@@ -23,7 +23,7 @@ def retrieve_pharmacy(request):
 
 def update_pharmacy(request, id):
 	pharm = Pharmacy.objects.get(pk = id)
-	form = PharmacyForm(request.POST, pharm=pharm)
+	form = PharmacyForm(request.POST, instance=pharm)
 	form.save()
 	return HttpResponse(status=200)
 
@@ -43,5 +43,5 @@ def get_crud_form_empty(request):
 
 def get_crud_form(request, id):
 	pharm = Pharmacy.objects.get(pk = id)
-	form = PharmacyForm(pharm=pharm)
+	form = PharmacyForm(instance=pharm)
 	return JsonResponse({'form': form.as_div()})
