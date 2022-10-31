@@ -1,4 +1,5 @@
 # Proyek Tengah Semester
+[![Deploy](https://github.com/naufalweise/pbp-proyek-tengah-semester/actions/workflows/dpl.yml/badge.svg)](https://github.com/naufalweise/pbp-proyek-tengah-semester/actions/workflows/dpl.yml)
 
 ## Daftar Anggota
 Kelompok B01:
