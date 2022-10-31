@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('example_app.urls')),
     path('medicine/', include('medicine.urls')),
+    path('pharmacy/', include('pharmacy.urls')),
 ]
 
 # TODO: Implement Routings Here
