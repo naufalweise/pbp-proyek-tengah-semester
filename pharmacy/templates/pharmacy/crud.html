@@ -1,0 +1,49 @@
+{% extends "pharmacy/base.html" %}
+{% load static %}
+{% block content %} 
+
+<ul class="nav nav-pills">
+	<li class="nav-item">
+	  <button onclick="openPharmacyForm()">Create New Pharmacy</button>
+	</li>
+</ul>
+
+<table id="pharmacy-table" class="table">
+	<thead>
+		<tr>
+			<td>Name</td>
+			<td>Address</td>
+			<td>Action</td>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+
+
+<!--Pharmacy Form Modal -->
+<div class="modal fade" id="pharmacy-form-modal" tabindex="-1" aria-labelledby="pharmacy form modal" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h1 class="modal-title fs-5" id="pharmacy-form-modal-title">Pharmacy Form</h1>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body" id="pharmacy-form-modal-body">
+		  
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+		  <button type="button" class="btn btn-primary" onclick="savePharmacyForm()">Save</button>
+		</div>
+	  </div>
+	</div>
+</div>
+<div id="myModal">My Modal</div>
+{% endblock content %}
+
+{% block script %}
+<script src="{% static '/pharmacy/js/crud.js' %}" type="text/javascript"></script> 
+{% endblock script %}
+
+
