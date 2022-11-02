@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load account_extras %}
+{% load static %}
+{% block meta %}
+<title>Market</title>
+<!-- CSS -->
+<link rel="stylesheet" href="{% static '/market.css' %}">
+{% endblock meta %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<h1 class="text-center">{{welcome}}</h1>
+<div class="container bg-white rounded shadow mt-5" id="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="h2 text-center fw-bold">Promo</div>
+            <div class="h3 text-primary text-center">Here are some good deals that you might like</div>
+            <!-- Daftar promo -->
+            <div id="show-promo"></div>
+            <br></br>
+            {% if request.user|has_group:"app_admin" %}
+            <div id="show-delete"></div>
+            <br></br>
+            {% endif %}
+    </div>
+</div>
+{% else %}
+<h1 class="text-center">{{login}}</h1>
+{% endif %}
+{% if request.user|has_group:"app_admin" %}
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-promo">Add Promo</button>
+{% endif %}
+<!-- Modal -->
+<div class="modal fade" id="add-promo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Promo</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" id="add-promo-form" >  
+                    {% csrf_token %}
+                        <div class="form-floating mb-4 text-black">
+                            <input id="isi" type="text" name="isi" placeholder="Promo" class="form-control form-control-lg" />
+                            <label class="form-label" for="typeEmailX">Promo</label>
+                        </div>   
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input class="btn btn-primary" type="submit" name="submit" value="Add"/>
+                        </div>
+                </form>
+            </div>
+    
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="add-promo" tabindex="-1" aria-labelledby="addPromoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Promo</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" id="add-promo-form" >
+                    {% csrf_token %}
+                        <div class="form-floating mb-4 text-black">
+                            <input id="deal" type="text" name="deal" placeholder="promo" class="form-control form-control-lg" />
+                            <label class="form-label" for="typeEmailX">Add Promo</label>
+                        </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <input class="btn btn-primary" type="submit" name="submit" value="Add"/>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Daftar Medicine -->
+
+<div class="search-wrapper">
+    <label for="search">Search Medicine</label>
+    <input type="search" id="search" data-search>
+</div>
+<div class="user-cards" data-medicine-cards-container></div>
+<template data-medicine-template>
+    <div class="card">
+        <div class="header" data-name>Medicine: </div>
+        <div class="body" data-stock>Stock: </div>
+        <div class="body" data-pharmacy>Pharmacy: </div>
+    </div>
+</template>
+{% endblock content %}
+
+
+{% block script %}
+<!-- JS -->
+<script type="text/javascript" language="javascript" src="{% static '/search.js' %}" defer></script>
+<script type="text/javascript" language="javascript" src="{% static '/promo.js' %}"></script>
+{% endblock script %}
