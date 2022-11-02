@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %} 
+
+<ul class="nav nav-pills">
+	<li class="nav-item">
+	  <button onclick="saveCustomerForm()">Edit Profile</button>
+	  <button ><a href="{% url 'customer:customer_dashboard' %}">Return to Dashboard</a></button>
+	</li>
+</ul>
+
+{{form}}
+
+
+<!--customer Form Modal -->
+<div class="modal fade" id="customer-form-modal" tabindex="-1" aria-labelledby="customer form modal" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h1 class="modal-title fs-5" id="customer-form-modal-title">customer Form</h1>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body" id="customer-form-modal-body">
+		  
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+		  <button type="button" class="btn btn-primary" onclick="saveCustomerForm()">Save</button>
+		</div>
+	  </div>
+	</div>
+</div>
+
+{% endblock content %}
+
+{% block script %}
+<script src="{% static '/customer/js/crud.js' %}" type="text/javascript"></script> 
+{% endblock script %}
+    <!-- So the current user username will be displayed on the input as a value -->
+    
+    <script type="text/javascript">
+    $('.submit_update').on('click', function(){
+                  $.ajax({
+                 url: '/update_profile/',
+                 method : 'POST',
+                 data: $('.update_profile').serialize(),
+                 beforeSend: function() {
+                  // things to do before submit
+                
+                 },
+                 success: function(response) {
+    
+                  alert(response)
+                  }
+                  });
+      return false;
+    
+    });
+    </script>
