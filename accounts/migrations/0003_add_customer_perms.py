@@ -19,6 +19,8 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('accounts', '0002_customer_role'),
+        ('customer', '0001_initial'),
+
     ]
 
     operations = [
