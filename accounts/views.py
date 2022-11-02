@@ -61,11 +61,11 @@ def login(request):
             response.set_cookie('last_login', str(datetime.datetime.now()))
             return response
 
-        # if user.groups.filter(name='customer'):
-        #     homepage_url = reverse('customer:view_profile')
-        #     response = JsonResponse({'homepage_url': homepage_url})
-        #     response.set_cookie('last_login', str(datetime.datetime.now()))
-        #     return response
+        if user.groups.filter(name='customer'):
+            homepage_url = reverse('customer:customer_dashboard')
+            response = JsonResponse({'homepage_url': homepage_url})
+            response.set_cookie('last_login', str(datetime.datetime.now()))
+            return response
 
         else:
             return JsonResponse({"errors": "User tidak punya role!"},status=403)
