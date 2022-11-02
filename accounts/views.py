@@ -38,7 +38,7 @@ def register_customer(request):
         if form.is_valid():
             user = form.save()
             customer_group = Group.objects.get(name="customer")
-            Customer.objects.create(user_id=user.pk)
+            Customer.objects.create(user_id=user.pk, address='-', phone='-')
             user.groups.add(customer_group)
             user.save()
             messages.success(request, 'Akun telah berhasil dibuat!')
