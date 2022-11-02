@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<div id="cust" class="container-fluid">
+   
+          <div class="card-content">
+            <h4>Hi, {{ full_name }}</h4>
+            <p>Address: {{ data.address }}</p>
+            <p>Phone Number: {{ phone }}</p>
+       
+          </div>
+              <tr><button class="button1"><a  href="{% url 'order:--------------' task.id %}">Order🛒</a></button></tr>
+          </div>
+      </div>
+      {% endfor %}
+</div>
+</div> 
