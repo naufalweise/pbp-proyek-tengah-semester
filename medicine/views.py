@@ -20,7 +20,27 @@ def create_medicine(request):
 
 def retrieve_medicines(request):
 	medicines = Medicine.objects.all()
-	return HttpResponse(serializers.serialize("json", medicines), content_type="application/json")
+	medicines_data = list(map(serialize_medicine, medicines))
+	return JsonResponse(medicines_data, safe=False)
+	
+def serialize_medicine(medicine):
+	obj = {}
+	obj['pk'] = medicine.pk
+	obj['fields'] = {}
+	obj['fields']['name'] = medicine.name
+	obj['fields']['stock'] = medicine.stock
+	obj['fields']['pharmacy'] = medicine.pharmacy.name
+	return obj
+
+def retrieve_medicines_detailed(request):
+	medicines = Medicine.objects.all()
+	medicines_data = map(serialize_medicine, medicines)
+	return JsonResponse(list(medicines_data), safe=False)
+
+
+	
+def add_pharmacy_name(medicine):
+	medicine['pharmacy_name'] = medicine
 
 @permission_required('medicine.change_medicine')
 def update_medicine(request, id):
