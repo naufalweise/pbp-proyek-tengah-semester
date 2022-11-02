@@ -55,30 +55,7 @@
         </div>
     </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="add-promo" tabindex="-1" aria-labelledby="addPromoLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Promo</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="POST" id="add-promo-form" onsubmit="addPromo(event)">
-                    {% csrf_token %}
-                        <div class="form-floating mb-4 text-black">
-                            <input id="deal" type="text" name="deal" placeholder="promo" class="form-control form-control-lg" />
-                            <label class="form-label" for="typeEmailX">Add Promo</label>
-                        </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <input class="btn btn-primary" type="submit" name="submit" value="Add"/>
-            </div>
-        </div>
-    </div>
-</div>
+
 <!-- Daftar Medicine -->
 
 <div class="search-wrapper">
