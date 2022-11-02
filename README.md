@@ -1,12 +1,13 @@
 # Proyek Tengah Semester
+[![Deploy](https://github.com/naufalweise/pbp-proyek-tengah-semester/actions/workflows/dpl.yml/badge.svg)](https://github.com/naufalweise/pbp-proyek-tengah-semester/actions/workflows/dpl.yml)
 
 ## Daftar Anggota
 Kelompok B01:
-- Elang Permana
-- Nadhira Shahnaz Zain
-- Naufal Weise Widyatama
-- Rafa Maritza
-- Taqiya Zayin Hanafie
+- Elang Permana: Order
+- Nadhira Shahnaz Zain: Pharmacy
+- Naufal Weise Widyatama: Medicine
+- Rafa Maritza: Market
+- Taqiya Zayin Hanafie: Customer
 
 ## Tautan Aplikasi Heroku
 https://pbp-b01-proyek-tengah-semester.herokuapp.com/

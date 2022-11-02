@@ -22,6 +22,7 @@ urlpatterns = [
     path('pharmacy/', include('pharmacy.urls', namespace="pharmacy")),
     path('medicine/', include('medicine.urls', namespace="medicine")),
     path('accounts/', include('accounts.urls', namespace="accounts")),
+    path('customer/', include('customer.urls', namespace="customer")),
 ]
 
 # TODO: Implement Routings Here

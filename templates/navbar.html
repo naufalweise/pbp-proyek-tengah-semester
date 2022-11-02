@@ -1,3 +1,4 @@
+{% load account_extras %}
 <div class="container">
     <header
         class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
@@ -15,10 +16,15 @@
                     >Home</a
                 >
             </li>
-			{% if perms.medicine.change_medicine %}
+			{% if request.user|has_group:"app_admin" %}
 			<li>
                 <a href="/medicine/crud" class="nav-link px-2"
                     >Manage Medicine</a
+                >
+            </li>
+            <li>
+                <a href="/pharmacy/crud" class="nav-link px-2"
+                    >Manage Pharmacy</a
                 >
             </li>
 			{% endif %}

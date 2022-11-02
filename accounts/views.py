@@ -8,7 +8,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import Group
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
+from django.urls import reverse
 from django.views.decorators.http import require_POST
+
+from customer.models import Customer
 
 # Create your views here.
 # def register_admin(request):
@@ -35,6 +38,7 @@ def register_customer(request):
         if form.is_valid():
             user = form.save()
             customer_group = Group.objects.get(name="customer")
+            Customer.objects.create(user_id=user.pk, address='-', phone='-')
             user.groups.add(customer_group)
             user.save()
             messages.success(request, 'Akun telah berhasil dibuat!')
@@ -50,19 +54,24 @@ def login(request):
         password = request.POST['password']
         user = auth.authenticate(request, username=username, password=password)
         if user is None:
-            return HttpResponse( "Username atau password salah!", status=401)
+            return JsonResponse({"errors": "Username atau password salah!"}, status=401)
             
         auth.login(request, user)
         
         if user.groups.filter(name='app_admin'):
-            response = redirect('medicine:view_crud')
+            homepage_url = reverse('medicine:view_crud')
+            response = JsonResponse({'homepage_url': homepage_url})
             response.set_cookie('last_login', str(datetime.datetime.now()))
             return response
 
-        # if user.groups.filter(name='customer'):
-        #    return redirect('customer:homepage)
+        if user.groups.filter(name='customer'):
+            homepage_url = reverse('customer:customer_dashboard')
+            response = JsonResponse({'homepage_url': homepage_url})
+            response.set_cookie('last_login', str(datetime.datetime.now()))
+            return response
+
         else:
-            return HttpResponse("User tidak punya role!",status=403)
+            return JsonResponse({"errors": "User tidak punya role!"},status=403)
 
     context = {}
     return render(request, 'accounts/login.html', context)
