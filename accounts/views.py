@@ -11,6 +11,8 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.decorators.http import require_POST
 
+from customer.models import Customer
+
 # Create your views here.
 # def register_admin(request):
 #     form = UserCreationForm()
@@ -36,6 +38,7 @@ def register_customer(request):
         if form.is_valid():
             user = form.save()
             customer_group = Group.objects.get(name="customer")
+            Customer.objects.create(user_id=user.pk)
             user.groups.add(customer_group)
             user.save()
             messages.success(request, 'Akun telah berhasil dibuat!')

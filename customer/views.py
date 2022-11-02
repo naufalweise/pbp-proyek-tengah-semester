@@ -1,31 +1,16 @@
 
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required, permission_required
+from django.views.decorators.http import require_POST
+from django.http import HttpResponse, JsonResponse
+from customer.forms import CustomerForm
 from customer.models import Customer
 
 
-@login_required(login_url='/accounts/login/')
-# Create your views here.
-def update_profile (request, pk):
-    current_user = request.user
-    if request.method == 'POST':
-        get_email = request.POST.get('email', '').strip()
-        get_first = request.POST.get('first_name', '').strip()
-        get_last = request.POST.get('last_name', '').strip()
-        get_phone = request.POST.get('phone', '').strip()
-        get_address = request.POST.get('address', '').strip()
-        suspect.objects.filter(pk=current_user.pk).update(username=get_email)
-
-        return HttpResponse('Profile Updated')
-    else:
-        return render(request, 'prorile_update_form.html', {'current_user': current_user})
-
-@login_required(login_url='/accounts/login/')
+@permission_required('customer.view_customer')
 def customer_dashboard (request):
-    data_cust = Customer.objects.filter(user=request.user)
     context = {
-        'data' : data_cust,
+        'data' : request.user.customer,
         'email': request.user.email,
         'full_name': request.user.get_full_name(),
 
@@ -33,6 +18,16 @@ def customer_dashboard (request):
    
     return render(request, "customer.html", context)
 
+@permission_required('customer.change_customer')
+def edit_profile(request):
+    form = CustomerForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return HttpResponse("Berhasil mengedit profile")
 
-def create_profile(request):
-    pass
+    return HttpResponse(form.errors.as_text(), status=400)
+
+@permission_required('customer.change_customer')
+def view_edit_profile(request):
+    form = CustomerForm(instance=request.user.customer)
+    return render(request, "customer-profile.html", context={'form': form})
