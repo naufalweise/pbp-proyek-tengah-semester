@@ -64,7 +64,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" id="add-promo-form" >
+                <form method="POST" id="add-promo-form" onsubmit="addPromo(event)">
                     {% csrf_token %}
                         <div class="form-floating mb-4 text-black">
                             <input id="deal" type="text" name="deal" placeholder="promo" class="form-control form-control-lg" />
