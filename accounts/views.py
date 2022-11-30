@@ -9,6 +9,7 @@ from django.contrib.auth.models import Group
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 from customer.models import Customer
@@ -29,7 +30,7 @@ from customer.models import Customer
     
 #     context = {'form':form}
 #     return render(request, 'accounts/register.html', context)
-
+@csrf_exempt
 def register_customer(request):
     form = UserCreationForm()
 
@@ -47,6 +48,7 @@ def register_customer(request):
     context = {'form':form}
     return render(request, 'accounts/register.html', context)
 
+@csrf_exempt
 def login(request):
 
     if request.method == "POST":
@@ -60,13 +62,13 @@ def login(request):
         
         if user.groups.filter(name='app_admin'):
             homepage_url = reverse('medicine:view_crud')
-            response = JsonResponse({'homepage_url': homepage_url})
+            response = JsonResponse({'homepage_url': homepage_url, "user_type": "app_admin"})
             response.set_cookie('last_login', str(datetime.datetime.now()))
             return response
 
         if user.groups.filter(name='customer'):
             homepage_url = reverse('customer:customer_dashboard')
-            response = JsonResponse({'homepage_url': homepage_url})
+            response = JsonResponse({'homepage_url': homepage_url, "user_type": "customer"})
             response.set_cookie('last_login', str(datetime.datetime.now()))
             return response
 
