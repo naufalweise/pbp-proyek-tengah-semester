@@ -13,10 +13,10 @@ from .models import Medicine
 def create_medicine(request):
 	form = MedicineForm(request.POST)
 	if not form.is_valid():
-		return JsonResponse({"errors": form.errors.as_text()}, status=400)
+		return JsonResponse({"status": False, "errors": form.errors.as_text(), "message": "Gagal menambahkan obat."}, status=400)
 	form.save()
 	request.session['last_activity'] = "Create Medicine"
-	return HttpResponse(status=200)
+	return JsonResponse({"status":True, "message": "Berhasil menambahkan obat!"});
 
 def retrieve_medicines(request):
 	medicines = Medicine.objects.all()
@@ -30,6 +30,7 @@ def serialize_medicine(medicine):
 	obj['fields']['name'] = medicine.name
 	obj['fields']['stock'] = medicine.stock
 	obj['fields']['pharmacy'] = medicine.pharmacy.name
+	obj['fields']['pharmacy_id'] = medicine.pharmacy.id
 	return obj
 
 def retrieve_medicines_detailed(request):
@@ -48,7 +49,7 @@ def update_medicine(request, id):
 	form = MedicineForm(request.POST, instance=instance)
 	form.save()
 	request.session['last_activity'] = "Update Medicine"
-	return HttpResponse(status=200)
+	return JsonResponse({"status": True, "message": "Berhasil mengedit obat!"})
 
 @permission_required('medicine.delete_medicine')
 @require_POST
@@ -56,7 +57,7 @@ def delete_medicine(request, id):
 	instance = Medicine.objects.get(pk = id)
 	instance.delete()
 	request.session['last_activity'] = "Delete Medicine"
-	return HttpResponse(status=200)
+	return JsonResponse({"status": True, "message": "Berhasil menghapus obat!"})
 
 @permission_required('medicine.change_medicine')
 def view_crud_page (request):

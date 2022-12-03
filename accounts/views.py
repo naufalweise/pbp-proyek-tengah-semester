@@ -82,3 +82,9 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('accounts:login')
+
+# logout dengan JSON response
+@require_POST
+def logout_json(request):
+    auth.logout(request)
+    return JsonResponse({"status": True, "message": "Berhasil logout!"})
