@@ -16,7 +16,7 @@ def create_pharmacy(request):
     form = PharmacyForm(request.POST)
     if form.is_valid:
         form.save()
-        return HttpResponse(status=200)
+        return JsonResponse({"status": 200, "message": "Berhasil menambahkan apotek!"})
     else:
         return JsonResponse({"errors": form.errors.as_text()}, status=400)
 
@@ -29,14 +29,14 @@ def update_pharmacy(request, id):
 	pharm = Pharmacy.objects.get(pk = id)
 	form = PharmacyForm(request.POST, instance=pharm)
 	form.save()
-	return HttpResponse(status=200)
+	return JsonResponse({"status": True, "message": "Berhasil mengedit apotek!"})
 
 @permission_required('pharmacy.delete_pharmacy')
 @require_POST
 def delete_pharmacy(request, id):
 	pharm = Pharmacy.objects.get(pk = id)
 	pharm.delete()
-	return HttpResponse(status=200)
+	return JsonResponse({"status": True, "message": "Berhasil menghapus apotek!"})
 
 @permission_required('pharmacy.change_pharmacy')
 def view_crud_page (request):
