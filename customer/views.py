@@ -61,7 +61,7 @@ def edit_profile_json(request):
         return JsonResponse({'status': True, 'message': 'Berhasil mengedit profil!'})
     return JsonResponse({'status': False, 'errors': form.errors.as_text(), 'message': 'Gagal mengedit profil.'})
 
-#@permission_required('customer.view_customer')
+@permission_required('customer.view_customer')
 def get_profile(request):
     return JsonResponse({
         'first_name': request.user.first_name, 
