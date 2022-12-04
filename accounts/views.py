@@ -67,7 +67,7 @@ def login(request):
             return response
 
         if user.groups.filter(name='customer'):
-            homepage_url = reverse('customer:customer_dashboard')
+            homepage_url = reverse('customer':customer_dashboard)
             response = JsonResponse({'homepage_url': homepage_url, "user_type": "customer"})
             response.set_cookie('last_login', str(datetime.datetime.now()))
             return response
