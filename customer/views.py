@@ -24,7 +24,7 @@ def register_customer(request):
         user.groups.add(customer_group)
         user.save()
         return JsonResponse({"status": True, "message": "Berhasil membuat akun!"})
-    return JsonResponse({"status": False, "errors": form.errors.as_json(), "message": form.errors.items()[0]})
+    return JsonResponse({"status": False, "errors": form.errors.as_json(), "message": "Data tidak valid!"})
     
 
 
@@ -59,7 +59,7 @@ def edit_profile_json(request):
         request.user.customer.phone = form.cleaned_data['phone']
         request.user.customer.save()
         return JsonResponse({'status': True, 'message': 'Berhasil mengedit profil!'})
-    return JsonResponse({'status': False, 'errors': form.errors.as_text(), 'message': 'Gagal mengedit profil.'})
+    return JsonResponse({'status': False, 'errors': form.errors.as_text(), 'message': 'Data tidak valid.'})
 
 @permission_required('customer.view_customer')
 def get_profile(request):
