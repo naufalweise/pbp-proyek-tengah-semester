@@ -16,7 +16,7 @@ def create_pharmacy(request):
     form = PharmacyForm(request.POST)
     if form.is_valid:
         form.save()
-        return JsonResponse({"status": 200, "message": "Berhasil menambahkan apotek!"})
+        return JsonResponse({"status": True, "message": "Berhasil menambahkan apotek!"})
     else:
         return JsonResponse({"errors": form.errors.as_text()}, status=400)
 
